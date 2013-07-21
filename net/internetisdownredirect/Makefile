@@ -12,7 +12,7 @@ PKG_SOURCE_VERSION:=$(PKG_REV)
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/nullhttpd
+define Package/internetisdownredirect
   SECTION:=net
   CATEGORY:=Network
   TITLE:=Internet is down redirect
