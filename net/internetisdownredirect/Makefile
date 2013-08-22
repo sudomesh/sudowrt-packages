@@ -18,7 +18,7 @@ define Package/internetisdownredirect
   TITLE:=Internet is down redirect
 endef
 
-define Package/bridge/description
+define Package/internetisdownredirect/description
   This package is a very simple http server that responds
   with redirects to all queries. Such that the user will
   be redirected to a webserver that tells them the 
