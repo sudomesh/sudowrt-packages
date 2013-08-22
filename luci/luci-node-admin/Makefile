@@ -3,6 +3,7 @@ include $(TOPDIR)/rules.mk
 PKG_NAME:=luci-node-admin
 PKG_VERSION:=0.0.1
 PKG_RELEASE:=HEAD
+PKG_REV:=HEAD
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=git://github.com/max-b/luci-node-admin.git
