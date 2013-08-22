@@ -13,28 +13,28 @@ PKG_SOURCE_VERSION:=$(PKG_REV)
 include $(INCLUDE_DIR)/package.mk
 
 define Package/internetisdownredirect
-  SECTION:=net
-  CATEGORY:=Network
-  TITLE:=Internet is down redirect
+	SECTION:=net
+	CATEGORY:=Network
+	TITLE:=Internet is down redirect
 endef
 
 define Package/internetisdownredirect/description
   This package is a very simple http server that responds
   with redirects to all queries. Such that the user will
   be redirected to a webserver that tells them the 
-  internet is down.
+	internet is down.
 endef
 
 define Build/Prepare
-$(call Build/Prepare/Default)
-mv $(PKG_BUILD_DIR)/src/* $(PKG_BUILD_DIR)
+	$(call Build/Prepare/Default)
+	mv $(PKG_BUILD_DIR)/src/* $(PKG_BUILD_DIR)
 endef
 
 define Package/internetisdownredirect/install
-$(INSTALL_DIR) $(1)/usr/bin
-$(INSTALL_BIN) $(PKG_BUILD_DIR)/internetisdownredirect $(1)/usr/bin/
-$(INSTALL_DIR) $(1)/etc/init.d
-$(INSTALL_BIN) ./files/internetisdownredirect.init $(1)/etc/init.d/internetisdownredirect
+	$(INSTALL_DIR) $(1)/usr/bin
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/internetisdownredirect $(1)/usr/bin/
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/internetisdownredirect.init $(1)/etc/init.d/internetisdownredirect
 endef
 
 $(eval $(call BuildPackage,internetisdownredirect))
