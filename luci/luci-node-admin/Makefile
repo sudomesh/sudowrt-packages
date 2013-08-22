@@ -25,7 +25,8 @@ define Package/luci-node-admin/description
 	Stripped down admin page for folks who are hosting nodes to administrate simple functionality.  
 endef
 
-define Build/Prepare
+define Build/Prepare	
+	$(call Build/Prepare/Default)
 endef
 
 define Package/luci-node-admin/install
