@@ -23,6 +23,9 @@ endef
 define Build/Prepare	
 endef
 
+define Build/Compile
+endef
+
 define Package/luci-node-admin/install
 	$(INSTALL_DIR) $(1)/
 	$(CP) ./files/* $(1)/
