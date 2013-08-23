@@ -4,12 +4,7 @@ PKG_NAME:=luci-node-admin
 PKG_VERSION:=0.0.1
 PKG_RELEASE:=HEAD
 PKG_REV:=HEAD
-
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=git://github.com/max-b/luci-node-admin.git
-PKG_SOURCE_PROTO:=git
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_VERSION:=$(PKG_REV)
+PKG_BUILD_DIR := $(BUILD_DIR)/$(PKG_NAME)
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -26,12 +21,11 @@ define Package/luci-node-admin/description
 endef
 
 define Build/Prepare	
-	$(call Build/Prepare/Default)
 endef
 
 define Package/luci-node-admin/install
-	$(CP) $(PKG_BUILD_DIR)/files $(1)/
-	chmod 755 $(1)/www/cgi-bin/mesh-admin
+	$(CP) ./files/* $(1)/
+	chmod 755 $(1)/www/cgi-bin/node-admin
 endef
 
 $(eval $(call BuildPackage,luci-node-admin))
