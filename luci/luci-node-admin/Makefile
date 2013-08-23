@@ -24,6 +24,7 @@ define Build/Prepare
 endef
 
 define Package/luci-node-admin/install
+	$(INSTALL_DIR) $(1)/
 	$(CP) ./files/* $(1)/
 	chmod 755 $(1)/www/cgi-bin/node-admin
 endef
