@@ -28,6 +28,6 @@ define Build/Compile
 endef
 
 define Package/luci-app-peopleswifi/install
-	endef
+endef
 
 $(eval $(call BuildPackage,luci-app-peopleswifi))
