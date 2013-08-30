@@ -1,6 +1,6 @@
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=luci-node-admin
+PKG_NAME:=luci-app-peopleswifi
 PKG_VERSION:=0.0.1
 PKG_RELEASE:=HEAD
 PKG_REV:=HEAD
@@ -8,7 +8,7 @@ PKG_BUILD_DIR := $(BUILD_DIR)/$(PKG_NAME)
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/luci-node-admin
+define Package/luci-app-peopleswifi
 	SECTION:=luci
 	CATEGORY:=LuCI
 	SUBMENU:=3. Applications
@@ -16,20 +16,18 @@ define Package/luci-node-admin
 	DEPENDS:=+luci-lib-json +luci-mod-admin-core +luci-lib-httpclient +luci-theme-bootstrap
 endef
 
-define Package/luci-node-admin/description
+define Package/luci-app-peopleswifi/description
 	Stripped down admin page for folks who are hosting nodes to administrate simple functionality.  
 endef
 
 define Build/Prepare	
+	$(call Build/Prepare/Default)
 endef
 
 define Build/Compile
 endef
 
-define Package/luci-node-admin/install
-	$(INSTALL_DIR) $(1)/
-	$(CP) ./files/* $(1)/
-	chmod 755 $(1)/www/cgi-bin/node-admin
-endef
+define Package/luci-app-peopleswifi/install
+	endef
 
-$(eval $(call BuildPackage,luci-node-admin))
+$(eval $(call BuildPackage,luci-app-peopleswifi))
