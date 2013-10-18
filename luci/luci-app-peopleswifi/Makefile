@@ -8,8 +8,17 @@ define Package/luci-node-admin
 	DEPENDS:=+luci-lib-json +luci-mod-admin-core +luci-lib-httpclient +luci-theme-bootstrap
 endef
 
+define Build/Prepare
+endef
+
+define Build/Configure
+endef
+
+define Build/Compile
+endef
+
 define Package/luci-app-peopleswifi/install
-	$(call Package/luci/install/template,$(1),applications/peopleswifi)
+	$(CP) ./luasrc/* $(1)/usr/lib/lua/luci/
 endef
 
 $(eval $(call BuildPackage,luci-app-peopleswifi))
