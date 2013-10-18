@@ -1,5 +1,4 @@
-include ../../build/config.mk
-include ../../build/module.mk
+include $(TOPDIR)/rules.mk
 
 define Package/luci-node-admin
 	SECTION:=luci
