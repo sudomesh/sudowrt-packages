@@ -21,5 +21,15 @@ define Package/luci-app-peopleswifi/install
 	$(CP) $(PKG_BUILD_DIR)/luasrc/* $(1)/usr/lib/lua/luci/
 endef
 
+define Package/luci-app-peopleswifi/postinst
+	#!/bin/sh
+	# check if we are on real system
+	if [ -z "$${IPKG_INSTROOT}" ]; then
+		# Delete the default theme from luci so that we're always using the fancy bootstrap one
+		sed -i '/OpenWrt/d' /etc/config/luci	        
+	fi
+	exit 0
+endef
+
 $(eval $(call BuildPackage,luci-app-peopleswifi))
 
