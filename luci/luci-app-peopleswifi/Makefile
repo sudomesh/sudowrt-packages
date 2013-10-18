@@ -12,9 +12,5 @@ define Package/luci-app-peopleswifi/install
 	$(call Package/luci/install/template,$(1),applications/peopleswifi)
 endef
 
-ifneq ($(CONFIG_PACKAGE_luci-app-peopleswifi),)
-	PKG_SELECTED_MODULES+=applications/peopleswifi
-endef
-
 $(eval $(call BuildPackage,luci-app-peopleswifi))
 
