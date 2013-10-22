@@ -1,8 +1,19 @@
 include $(TOPDIR)/rules.mk
 
+PKG_NAME:=luci-app-peopleswifi
+PKG_VERSION:=0.0.1
+PKG_RELEASE:=HEAD
+PKG_REV:=HEAD
+
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+PKG_SOURCE_URL:=git://github.com/sudomesh/luci-app-peopleswifi.git
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+PKG_SOURCE_VERSION:=$(PKG_REV)
+
 include $(INCLUDE_DIR)/package.mk
 
-define Package/luci-node-admin
+define Package/luci-app-peopleswifi
 	SECTION:=luci
 	CATEGORY:=LuCI
 	SUBMENU:=3. Applications
