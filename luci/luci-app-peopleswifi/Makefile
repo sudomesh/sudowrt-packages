@@ -14,10 +14,11 @@ endef
 define Package/luci-app-peopleswifi/configure
 endef
 
-define Package/luci-app-peopleswifi/compile
+define Build/Compile
 endef
 
 define Package/luci-app-peopleswifi/install
+	$(INSTALL_DIR) $(1)/
 	$(CP) $(PKG_BUILD_DIR)/luasrc/* $(1)/usr/lib/lua/luci/
 endef
 
