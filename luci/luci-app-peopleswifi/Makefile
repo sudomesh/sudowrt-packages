@@ -1,5 +1,7 @@
 include $(TOPDIR)/rules.mk
 
+include $(INCLUDE_DIR)/package.mk
+
 define Package/luci-node-admin
 	SECTION:=luci
 	CATEGORY:=LuCI
@@ -8,10 +10,8 @@ define Package/luci-node-admin
 	DEPENDS:=+luci-lib-json +luci-mod-admin-core +luci-lib-httpclient +luci-theme-bootstrap
 endef
 
-define Package/luci-app-peopleswifi/prepare
-endef
-
-define Package/luci-app-peopleswifi/configure
+define Build/Prepare
+	$(call Build/Prepare/Default)
 endef
 
 define Build/Compile
