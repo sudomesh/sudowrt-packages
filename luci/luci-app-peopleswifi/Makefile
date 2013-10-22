@@ -29,7 +29,7 @@ define Build/Compile
 endef
 
 define Package/luci-app-peopleswifi/install
-	$(INSTALL_DIR) $(1)/
+	$(INSTALL_DIR) $(1)/usr/lib/lua/luci
 	$(CP) $(PKG_BUILD_DIR)/luasrc/* $(1)/usr/lib/lua/luci/
 endef
 
