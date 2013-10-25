@@ -52,5 +52,11 @@ define Package/luci-app-peopleswifi/postinst
 	exit 0
 endef
 
+define Package/luci-app-peopleswifi/postinst
+	#!/bin/sh
+	sed -i '/homeuser/d' /etc/passwd
+	exit 0
+endef
+
 $(eval $(call BuildPackage,luci-app-peopleswifi))
 
