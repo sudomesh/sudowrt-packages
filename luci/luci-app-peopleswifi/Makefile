@@ -52,7 +52,7 @@ define Package/luci-app-peopleswifi/postinst
 	exit 0
 endef
 
-define Package/luci-app-peopleswifi/postinst
+define Package/luci-app-peopleswifi/postrm
 	#!/bin/sh
 	sed -i '/homeuser/d' /etc/passwd
 	exit 0
