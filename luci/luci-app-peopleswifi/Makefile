@@ -41,6 +41,9 @@ define Package/luci-app-peopleswifi/postinst
 		sed -i '/OpenWrt/d' /etc/config/luci	        
 		# Restart the http server
 		/etc/init.d/uhttpd restart
+		# This creates a "homeuser" account which can access the limited admin panel with password "homeuser"
+		echo "homeuser::100:0:home:/tmp:/bin/false" >> /etc/passwd
+		echo "homeuser" | passwd "homeuser" --stdin
 	fi
 	exit 0
 endef
