@@ -39,6 +39,8 @@ define Package/luci-app-peopleswifi/postinst
 	if [ -z "$${IPKG_INSTROOT}" ]; then
 		# Delete the default theme from luci so that we're always using the fancy bootstrap one
 		sed -i '/OpenWrt/d' /etc/config/luci	        
+		# Restart the http server
+		/etc/init.d/uhttpd restart
 	fi
 	exit 0
 endef
