@@ -43,7 +43,11 @@ define Package/luci-app-peopleswifi/postinst
 		/etc/init.d/uhttpd restart
 		# This creates a "homeuser" account which can access the limited admin panel with password "homeuser"
 		echo "homeuser::100:0:home:/tmp:/bin/false" >> /etc/passwd
-		echo "homeuser" | passwd "homeuser" --stdin
+		(
+		echo "homeuser"
+		sleep 1
+		echo "homeuser"
+		)|passwd homeuser
 	fi
 	exit 0
 endef
