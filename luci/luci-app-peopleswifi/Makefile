@@ -39,6 +39,7 @@ define Package/luci-app-peopleswifi/postinst
 	if [ -z "$${IPKG_INSTROOT}" ]; then
 		# Delete the default theme from luci so that we're always using the fancy bootstrap one
 		sed -i '/OpenWrt/d' /etc/config/luci	        
+		sed -i 's/openwrt.org/bootstrap/g' /etc/config/luci	        
 		# Restart the http server
 		/etc/init.d/uhttpd restart
 		# This creates a "homeuser" account which can access the limited admin panel with password "homeuser"
