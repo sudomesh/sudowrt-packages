@@ -2,6 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=internetisdownredirect
 PKG_VERSION:=0.0.1
+PKG_RELEASE:=HEAD
 PKG_REV:=HEAD
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
@@ -18,10 +19,10 @@ define Package/internetisdownredirect
 	TITLE:=Internet is down redirect
 endef
 
-define Package/bridge/description
-	This package is a very simple http server that responds
-	with redirects to all queries. Such that the user will
-	be redirected to a webserver that tells them the 
+define Package/internetisdownredirect/description
+  This package is a very simple http server that responds
+  with redirects to all queries. Such that the user will
+  be redirected to a webserver that tells them the 
 	internet is down.
 endef
 
