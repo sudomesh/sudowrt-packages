@@ -34,8 +34,6 @@ endef
 define Package/mdnssd-min/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/mdnssd-min $(1)/usr/bin/
-	$(INSTALL_DIR) $(1)/etc/init.d
-	$(INSTALL_BIN) ./files/mdnssd-min.init $(1)/etc/init.d/mdnssd-min
 endef
 
 $(eval $(call BuildPackage,mdnssd-min))
