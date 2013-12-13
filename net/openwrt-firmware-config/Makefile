@@ -34,6 +34,7 @@ endef
 define Package/openwrt-firmware-config/install
 	$(INSTALL_DIR) $(1)/
 	$(CP) $(PKG_BUILD_DIR)/files/* $(1)/
+	$(CP) $(PKG_BUILD_DIR)/scripts/* $(1)/tmp/openwrt-firmware-config-scripts
 endef
 
 define Package/openwrt-firware-config/postinst
@@ -41,6 +42,9 @@ define Package/openwrt-firware-config/postinst
 	# check if we are on real system
 	if [ -z "$${IPKG_INSTROOT}" ]; then
 		# Any scripts that we want to run for configuring a sudomesh flashed node
+		chmod 744 /tmp/openwrt-firmware-config-scripts/postinstall.sh
+		/tmp/openwrt-firmware-config-scripts/postinstall.sh
+		rm -rf /tmp/openwrt-firmware-config-scripts
 	fi
 	exit 0
 endef
