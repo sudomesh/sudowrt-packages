@@ -34,6 +34,7 @@ endef
 define Package/openwrt-firmware-config/install
 	$(INSTALL_DIR) $(1)/
 	$(CP) $(PKG_BUILD_DIR)/files/* $(1)/
+	mkdir -p $(1)/tmp/openwrt-firmware-config-scripts
 	$(CP) $(PKG_BUILD_DIR)/scripts/* $(1)/tmp/openwrt-firmware-config-scripts
 endef
 
