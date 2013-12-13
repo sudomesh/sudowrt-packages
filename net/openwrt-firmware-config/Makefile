@@ -37,7 +37,7 @@ define Package/openwrt-firmware-config/install
 	$(CP) $(PKG_BUILD_DIR)/scripts/* $(1)/tmp/openwrt-firmware-config-scripts
 endef
 
-define Package/openwrt-firware-config/postinst
+define Package/openwrt-firmware-config/postinst
 	#!/bin/sh
 	# check if we are on real system
 	if [ -z "$${IPKG_INSTROOT}" ]; then
@@ -49,8 +49,8 @@ define Package/openwrt-firware-config/postinst
 	exit 0
 endef
 
-define Package/luci-app-peopleswifi/postrm
+define Package/openwrt-firmware-config/postrm
 endef
 
-$(eval $(call BuildPackage,luci-app-peopleswifi))
+$(eval $(call BuildPackage,openwrt-firmware-config))
 
