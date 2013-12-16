@@ -14,8 +14,9 @@ PKG_SOURCE_VERSION:=$(PKG_REV)
 include $(INCLUDE_DIR)/package.mk
 
 define Package/openwrt-firmware-config
-	SECTION:=net
-	CATEGORY:=Network
+	SECTION:=base
+	CATEGORY:=Base system
+	DEPENDS:=+base-files
 	TITLE:=Configuration for sudomesh firmware
 endef
 

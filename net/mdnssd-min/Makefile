@@ -20,7 +20,7 @@ define Package/mdnssd-min
 endef
 
 define Package/mdnssd-min/description
-  This package is a minimal mDNS and DNS-SD client
+	This package is a minimal mDNS and DNS-SD client
 	that is supposed to be run for one-off queries
 	asking for a service type and resulting in
 	one or more hostname+ip+port triplets as answers.
