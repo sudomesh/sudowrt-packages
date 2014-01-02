@@ -42,21 +42,21 @@ define Package/luci-app-peopleswifi/postinst
 		sed -i 's/openwrt.org/bootstrap/g' /etc/config/luci	        
 		# Restart the http server
 		/etc/init.d/uhttpd restart
-		# This creates a "homeuser" account which can access the limited admin panel with password "homeuser"
-		echo "homeuser::100:0:home:/tmp:/bin/false" >> /etc/passwd
-		(
-		echo "homeuser"
-		sleep 1
-		echo "homeuser"
-		)|passwd homeuser
+		# This creates a "admin" account which can access the limited admin panel with password "admin"
+		#echo "admin::100:0:home:/tmp:/bin/false" >> /etc/passwd
+		#(
+		#echo "admin"
+		#sleep 1
+		#echo "admin"
+		#)|passwd admin
 	fi
 	exit 0
 endef
 
 define Package/luci-app-peopleswifi/postrm
 	#!/bin/sh
-	sed -i '/homeuser/d' /etc/passwd
-	exit 0
+	#sed -i '/admin/d' /etc/passwd
+	#exit 0
 endef
 
 $(eval $(call BuildPackage,luci-app-peopleswifi))
