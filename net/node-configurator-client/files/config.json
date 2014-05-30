@@ -1,0 +1,6 @@
+{
+  "mdnssd_min": "/usr/bin/mdnssd-min",
+  "download_path": "/tmp",
+  "ssl_root_cert": "/etc/nodeconf/certs/ca_root.crt",
+  "service_type": "_nodeconf._tcp.local"
+}
