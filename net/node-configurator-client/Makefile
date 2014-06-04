@@ -21,15 +21,13 @@ endef
 
 define Package/node-configurator-client/description
 	This is the client for the sudo mesh node-configurator.
-        It will find a running node-configurator on the local
-        network, connect to it with SSL, receive an ipk
+  It will find a running node-configurator on the local
+  network, connect to it with SSL, receive an ipk
 	file containing the configuration and install it.
 endef
 
 define Build/Prepare
-endef
-
-define Build/Configure
+	$(call Build/Prepare/Default)
 endef
 
 define Build/Compile
