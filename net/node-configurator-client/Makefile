@@ -40,7 +40,7 @@ define Package/node-configurator-client/install
 	$(INSTALL_DIR) $(1)/etc/nodeconf
 	$(INSTALL_DATA) ./files/config.json $(1)/etc/nodeconf/config.json
 	$(CP) $(PKG_BUILD_DIR)/nodeconfclient.lua $(1)/usr/bin/	
-	$(CP) $(PKG_BUILD_DIR)/dkjson.lua $(1)/usr/lib/lua/
+	$(CP) $(PKG_BUILD_DIR)/dkjson-min.lua $(1)/usr/lib/lua/
 	$(CP) $(PKG_BUILD_DIR)/getopt_alt.lua $(1)/usr/lib/lua/
 	$(CP) $(PKG_BUILD_DIR)/init_script $(1)/etc/init.d/nodeconf_client
 endef
