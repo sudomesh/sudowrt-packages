@@ -1,0 +1,7 @@
+config server
+	list interface 'eth0.1=100.64.2.2/255.255.255.255'
+	list interface 'eth0.2=100.64.2.3/255.255.255.255'
+	option enabled '1'
+  option hook_script '/opt/notdhcpserver/hook.sh'
+  option ssl_cert '/etc/notdhcp/client.cert'
+  option ssl_key '/etc/notdhcp/client.key'

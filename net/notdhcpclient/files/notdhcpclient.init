@@ -1,0 +1,56 @@
+#!/bin/sh /etc/rc.common
+
+START=91
+
+# Location of notdhcpclient binary
+CLIENT_PATH=/usr/bin/notdhcpclient
+
+# Where to write PID file
+PIDFILE=/var/run/notdhcpclient.pid
+
+# Arguments to pass to client
+# You can add -v to make it more verbose
+CLIENT_ARGS="-v"
+
+config_cb() {
+##TODO: This could get called multiple times if there were multiple config sections in /etc/config/notdhcpclient
+	local cfg="$CONFIG_SECTION"
+  local type="$1"
+  local name="$2"
+	case "$type" in
+		client)
+			config_get_bool enabled "$cfg" enabled 1
+			config_get IFACE "$cfg" interface
+			config_get HOOK_SCRIPT "$cfg" hook_script
+			config_get SSL_CERT "$cfg" ssl_cert
+			config_get SSL_KEY "$cfg" ssl_key
+
+			[ $enabled -eq 0 ] && return
+
+			echo "Starting notdhcpclient"
+      /sbin/start-stop-daemon --start --make-pidfile --pidfile $PIDFILE --background --startas /bin/sh -- "exec $CLIENT_PATH $CLIENT_ARGS -s $HOOK_SCRIPT -c $SSL_CERT -k $SSL_KEY $IFACE &> logger"
+
+		;;
+	esac
+}
+
+start() {
+	config_load notdhcpclient
+}
+
+stop() {
+  PID="$(cat ${PIDFILE})"
+  echo "Stopping notdhcpclient"
+  start-stop-daemon -K -q -p $PIDFILE 
+  while test -d "/proc/${PID}"; do
+    echo "  waiting for notdhcpclient to stop"
+    sleep 1
+  done 
+  echo "  notdhcpclient stopped"
+}
+
+restart() {
+	stop
+	start
+}
+
