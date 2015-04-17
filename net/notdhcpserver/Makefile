@@ -26,7 +26,6 @@ endef
 
 define Build/Prepare
 	$(call Build/Prepare/Default)
-	mv $(PKG_BUILD_DIR)/* $(PKG_BUILD_DIR)
 endef
 
 define Package/notdhcpserver/install
