@@ -13,44 +13,40 @@ PIDFILE=/var/run/notdhcpclient.pid
 CLIENT_ARGS="-v"
 
 config_cb() {
-##TODO: This could get called multiple times if there were multiple config sections in /etc/config/notdhcpclient
-	local cfg="$CONFIG_SECTION"
+  ##TODO: This could get called multiple times if there were multiple config sections in /etc/config/notdhcpclient
+  local cfg="$CONFIG_SECTION"
   local type="$1"
   local name="$2"
-	case "$type" in
-		client)
-			config_get_bool enabled "$cfg" enabled 1
-			config_get IFACE "$cfg" interface
-			config_get HOOK_SCRIPT "$cfg" hook_script
-			config_get SSL_CERT "$cfg" ssl_cert
-			config_get SSL_KEY "$cfg" ssl_key
+  case "$type" in
+    client)
+      config_get_bool enabled "$cfg" enabled 1
+      config_get IFACE "$cfg" interface
+      config_get HOOK_SCRIPT "$cfg" hook_script
+      config_get SSL_CERT "$cfg" ssl_cert
+      config_get SSL_KEY "$cfg" ssl_key
 
-			[ $enabled -eq 0 ] && return
+      [ $enabled -eq 0 ] && return
 
-			echo "Starting notdhcpclient"
-      /sbin/start-stop-daemon --start --make-pidfile --pidfile $PIDFILE --background --startas /bin/sh -- "exec $CLIENT_PATH $CLIENT_ARGS -s $HOOK_SCRIPT -c $SSL_CERT -k $SSL_KEY $IFACE &> logger"
+      echo "Starting notdhcpclient"
+      
+      service_start $CLIENT_PATH $CLIENT_ARGS -s $HOOK_SCRIPT -c $SSL_CERT -k $SSL_KEY $IFACE &> logger
 
-		;;
-	esac
+      ;;
+  esac
 }
 
 start() {
-	config_load notdhcpclient
+  config_load notdhcpclient
 }
 
 stop() {
-  PID="$(cat ${PIDFILE})"
   echo "Stopping notdhcpclient"
-  start-stop-daemon -K -q -p $PIDFILE 
-  while test -d "/proc/${PID}"; do
-    echo "  waiting for notdhcpclient to stop"
-    sleep 1
-  done 
+  service_stop $CLIENT_PATH
   echo "  notdhcpclient stopped"
 }
 
 restart() {
-	stop
-	start
+  stop
+  start
 }
 

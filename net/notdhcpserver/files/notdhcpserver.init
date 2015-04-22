@@ -6,56 +6,53 @@ START=91
 SERVER_PATH=/usr/bin/notdhcpserver
 
 # Where to write PID file
-PIDFILE=/var/run/notdhcpserver.pid
+PID_FILE=/var/run/notdhcpserver.pid
+
+# Required for service_start
+SERVICE_WRITE_PID=1
+SERVICE_DAEMONIZE=1
 
 # Arguments to pass to server
 # You can add -v to make it more verbose
 SERVER_ARGS="-v"
 
 config_cb() {
-##TODO: This could get called multiple times if there were multiple config sections in /etc/config/notdhcpserver
-	local cfg="$CONFIG_SECTION"
+  ##TODO: This could get called multiple times if there were multiple config sections in /etc/config/notdhcpserver
+  local cfg="$CONFIG_SECTION"
+  config_get configname "$cfg" TYPE
   local type="$1"
   local name="$2"
-	case "$type" in
-		server)
-			config_get_bool enabled "$cfg" enabled 1
-			config_get addresses "$cfg" address
-			config_get HOOK_SCRIPT "$cfg" hook_script
-			config_get SSL_CERT "$cfg" ssl_cert
-			config_get SSL_KEY "$cfg" ssl_key
-			
-			[ $enabled -eq 0 ] && return
+  case "$configname" in
+    server)
+      config_get_bool enabled "$cfg" enabled 1
+      config_get IFACES "$cfg" addresses
+      config_get HOOK_SCRIPT "$cfg" hook_script
+      config_get SSL_CERT "$cfg" ssl_cert
+      config_get SSL_KEY "$cfg" ssl_key
 
-			local IFACES=""
-			for address in $addresses; do
-			  append IFACES "${address}" " "
-			done
+      [ $enabled -eq 0 ] && return
 
-			echo "Starting notdhcpserver"
-      /sbin/start-stop-daemon --start --make-pidfile --pidfile $PIDFILE --background --startas /bin/sh -- "exec $SERVER_PATH $SERVER_ARGS -c $SSL_CERT -k $SSL_KEY -s $HOOK_SCRIPT $IFACES &> logger"
+      local IFACES=$addresses
 
-		;;
-	esac
+      echo "Starting notdhcpserver"
+      service_start $SERVER_PATH $SERVER_ARGS -s $HOOK_SCRIPT -c $SSL_CERT -k $SSL_KEY $IFACES 
+
+      ;;
+  esac
 }
 
 start() {
-	config_load notdhcpserver
+  config_load notdhcpserver
 }
 
 stop() {
-  PID="$(cat ${PIDFILE})"
   echo "Stopping notdhcpserver"
-  start-stop-daemon -K -q -p $PIDFILE 
-  while test -d "/proc/${PID}"; do
-    echo "  waiting for notdhcpserver to stop"
-    sleep 1
-  done 
-  echo "  notdhcpserver stopped"
+  service_stop $SERVER_PATH
+  echo "notdhcpserver stopped"
 }
 
 restart() {
-	stop
-	start
+  stop
+  start
 }
 
