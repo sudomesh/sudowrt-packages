@@ -17,6 +17,7 @@ define Package/notdhcpclient
 	SECTION:=net
 	CATEGORY:=Network
 	TITLE:=Client side implementation of Sudomesh protocol for evented management of antenna nodes by mesh routing nodes
+	DEPENDS:=+libc
 endef
 
 define Package/notdhcpclient/description
