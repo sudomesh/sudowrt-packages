@@ -2,6 +2,6 @@ config server
   list addresses 'eth0.1=100.64.2.2/255.255.255.255'
   list addresses 'eth0.2=100.64.2.3/255.255.255.255'
   option enabled '1'
-  option hook_script '/opt/notdhcpserver/hook.sh'
+  option hook_script '/opt/mesh/notdhcpserver/hook.sh'
   option ssl_cert '/etc/uhttpd.crt'
   option ssl_key '/etc/uhttpd.key'
