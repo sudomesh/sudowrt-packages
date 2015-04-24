@@ -14,7 +14,8 @@ SERVICE_DAEMONIZE=1
 
 # Arguments to pass to server
 # You can add -v to make it more verbose
-SERVER_ARGS="-v"
+# -f makes it write to syslog
+SERVER_ARGS="-vf"
 
 config_cb() {
   ##TODO: This could get called multiple times if there were multiple config sections in /etc/config/notdhcpserver
