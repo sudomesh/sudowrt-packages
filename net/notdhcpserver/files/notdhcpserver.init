@@ -32,8 +32,6 @@ config_cb() {
 
       [ $enabled -eq 0 ] && return
 
-      local IFACES=$addresses
-
       echo "Starting notdhcpserver"
       service_start $SERVER_PATH $SERVER_ARGS -s $HOOK_SCRIPT -c $SSL_CERT -k $SSL_KEY $IFACES 
 
