@@ -8,6 +8,10 @@ CLIENT_PATH=/usr/bin/notdhcpclient
 # Where to write PID file
 PIDFILE=/var/run/notdhcpclient.pid
 
+# Required for service_start
+SERVICE_WRITE_PID=1
+SERVICE_DAEMONIZE=1
+
 # Arguments to pass to client
 # You can add -v to make it more verbose
 # -f makes it write to syslog
