@@ -17,7 +17,7 @@ define Package/notdhcpserver
 	SECTION:=net
 	CATEGORY:=Network
 	TITLE:=Server side implementation of Sudomesh protocol for evented management of antenna nodes by mesh routing nodes
-	DEPENDS:=+libc
+	DEPENDS:=+libc +libnl
 endef
 
 define Package/notdhcpserver/description
