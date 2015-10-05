@@ -37,8 +37,7 @@ define Package/openwrt-firmware-config/install
 	$(INSTALL_DIR) $(1)/
 	mkdir -p $(1)/tmp/openwrt-firmware-config-scripts
 	$(CP) $(PKG_BUILD_DIR)/init-scripts/* $(1)/tmp/openwrt-firmware-config-scripts
-	mkdir -p $(1)/usr/share/sudomesh
-	$(CP) $(PKG_BUILD_DIR)/functions/* $(1)/usr/share/sudomesh/
+	$(CP) $(PKG_BUILD_DIR)/files/* $(1)/
 endef
 
 define Package/openwrt-firmware-config/postinst
