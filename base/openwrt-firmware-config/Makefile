@@ -20,8 +20,10 @@ define Package/openwrt-firmware-config
 endef
 
 define Package/openwrt-firmware-config/description
-  This is a simple package for putting settings on the sudomesh firmware
-	The node configurator server will run afterwards - these are just initial settings.
+  This is a simple package for putting settings on sudomesh firmware
+	This is installed on home nodes as well as extender nodes
+	For home nodes, the node configurator server will run afterwards
+	These are shared functions and/or initial settings
 endef
 
 define Build/Prepare
@@ -34,13 +36,16 @@ endef
 define Package/openwrt-firmware-config/install
 	$(INSTALL_DIR) $(1)/
 	mkdir -p $(1)/tmp/openwrt-firmware-config-scripts
-	$(CP) $(PKG_BUILD_DIR)/scripts/* $(1)/tmp/openwrt-firmware-config-scripts
+	$(CP) $(PKG_BUILD_DIR)/init-scripts/* $(1)/tmp/openwrt-firmware-config-scripts
+	mkdir -p $(1)/usr/share/sudomesh
+	$(CP) $(PKG_BUILD_DIR)/functions/* $(1)/usr/share/sudomesh/
 endef
 
 define Package/openwrt-firmware-config/postinst
 	#!/bin/sh
 	# check if we are on real system
 	if [ -z "$${IPKG_INSTROOT}" ]; then
+		chmod 744 /usr/share/sudomesh/*
 		# Any scripts that we want to run for configuring a sudomesh flashed node
 		chmod 744 /tmp/openwrt-firmware-config-scripts/postinstall.sh
 		/tmp/openwrt-firmware-config-scripts/postinstall.sh
