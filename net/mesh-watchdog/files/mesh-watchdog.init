@@ -1,0 +1,53 @@
+#!/bin/sh /etc/rc.common
+
+START=99
+USE_PROCD=1
+
+# Location of mesh-watchdog script
+SCRIPT_PATH=/opt/mesh/mesh-watchdog
+
+# Where to write PID file
+PID_FILE=/var/run/mesh-watchdog.pid
+
+# Required for service_start
+SERVICE_WRITE_PID=1
+SERVICE_DAEMONIZE=1
+
+config_cb() {
+  local cfg="$CONFIG_SECTION"
+  config_get configname "$cfg" TYPE
+  local type="$1"
+  local name="$2"
+  case "$configname" in
+    server)
+      config_get_bool enabled "$cfg" enabled 1
+      config_get DEST "$cfg" dest
+      config_get RESTART_COMMAND "$cfg" restart_command
+      config_get INITIAL_WAIT "$cfg" initial_wait
+      config_get PING_WAIT "$cfg" ping_wait
+      config_get NUM_TRIES "$cfg" num_tries
+
+      [ $enabled -eq 0 ] && return
+
+      echo "Starting mesh-watchdog"
+      service_start "$SCRIPT_PATH" "$DEST" "$PING_WAIT" "$INITIAL_WAIT" "$NUM_TRIES" "$RESTART_COMMAND"
+
+      ;;
+  esac
+}
+
+start() {
+  config_load mesh-watchdog
+}
+
+stop() {
+  echo "Stopping mesh-watchdog"
+  service_stop $SCRIPT_PATH
+  echo "mesh-watchdog stopped"
+}
+
+restart() {
+  stop
+  start
+}
+
