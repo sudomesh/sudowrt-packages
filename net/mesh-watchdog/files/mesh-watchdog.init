@@ -1,7 +1,6 @@
 #!/bin/sh /etc/rc.common
 
 START=99
-USE_PROCD=1
 
 # Location of mesh-watchdog script
 SCRIPT_PATH=/opt/mesh/mesh-watchdog
