@@ -8,27 +8,29 @@ $0 IP ping_wait initial_wait num_tries restart_command
 
 IP: IP Address To Ping
 ping_wait: Wait specified to ping command (-w flag)
+retry_pause: Time to wait between pings (seconds)
 initial_wait: Startup Delay (seconds)
 num_tries: Failure Count To Reboot
 restart_command: Command that will be run on failure to ping
 
 eg.
-$0 100.64.0.1 2 10 10 '/etc/init.d/meshrouting restart'
+$0 100.64.0.1 2 5 10 10 '/etc/init.d/meshrouting restart'
 
 Borrowed heavily from danitool: https://forum.openwrt.org/viewtopic.php?id=55115
 EOF
 }
 
-if [ "$#" -ne 5 ]; then
+if [ "$#" -ne 6 ]; then
   help
   exit 2
 fi
 
 dest=$1
 ping_wait=$2
-initial_wait=$3
-num_tries=$4
-restart_command=$5
+retry_pause=$3
+initial_wait=$4
+num_tries=$5
+restart_command=$6
 
 tries=0
 sleep "$initial_wait"
@@ -43,6 +45,7 @@ while true; do
 
   if /bin/ping -c 1 -w "$ping_wait" "$dest" >/dev/null; then
     tries=0
+		sleep $retry_pause
   else
     tries=`expr $tries + 1`
     logger "Failed to contact $dest on attempt #$tries"

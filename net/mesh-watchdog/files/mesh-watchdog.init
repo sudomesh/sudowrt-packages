@@ -26,13 +26,14 @@ config_cb() {
       config_get DEST "$cfg" dest
       config_get RESTART_COMMAND "$cfg" restart_command
       config_get INITIAL_WAIT "$cfg" initial_wait
+      config_get RETRY_PAUSE "$cfg" retry_pause
       config_get PING_WAIT "$cfg" ping_wait
       config_get NUM_TRIES "$cfg" num_tries
 
       [ $enabled -eq 0 ] && return
 
       echo "Starting mesh-watchdog"
-      service_start "$SCRIPT_PATH" "$DEST" "$PING_WAIT" "$INITIAL_WAIT" "$NUM_TRIES" "$RESTART_COMMAND"
+      service_start "$SCRIPT_PATH" "$DEST" "$PING_WAIT" "$RETRY_PAUSE" "$INITIAL_WAIT" "$NUM_TRIES" "$RESTART_COMMAND"
 
       ;;
   esac
