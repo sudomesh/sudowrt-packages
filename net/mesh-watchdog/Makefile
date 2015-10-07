@@ -34,7 +34,7 @@ define Package/mesh-watchdog/install
 	$(INSTALL_DIR) $(1)/etc/config
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/config.default $(1)/etc/config/mesh-watchdog
 	$(INSTALL_DIR) $(1)/opt/mesh
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/mesh-watchdog.sh $(1)/opt/mesh/mesh-watchdog.sh
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/mesh-watchdog $(1)/opt/mesh/mesh-watchdog
 endef
 
 define Package/mesh-watchdog/conffiles

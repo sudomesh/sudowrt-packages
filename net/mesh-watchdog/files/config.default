@@ -3,5 +3,5 @@ config server
   option num_tries '10'
   option ping_wait '5'
   option initial_wait '400'
-  option restart_script '/etc/init.d/meshrouting restart'
+  option restart_command '/etc/init.d/meshrouting restart'
   option dest '100.64.0.1' # Currently sudomesh exit server's mesh ip
