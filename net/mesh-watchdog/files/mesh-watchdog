@@ -45,7 +45,7 @@ while true; do
 
   if /bin/ping -c 1 -w "$ping_wait" "$dest" >/dev/null; then
     tries=0
-		sleep $retry_pause
+    sleep $retry_pause
   else
     tries=`expr $tries + 1`
     logger "Failed to contact $dest on attempt #$tries"
