@@ -41,6 +41,7 @@ while true; do
     logger "Failed to contact $dest after $num_tries. Executing restart_command: $restart_command"
     tries=0
     eval "$restart_command"
+		sleep "$initial_wait"
   fi
 
   if /bin/ping -c 1 -w "$ping_wait" "$dest" >/dev/null; then
