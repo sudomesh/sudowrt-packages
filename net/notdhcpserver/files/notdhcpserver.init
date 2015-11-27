@@ -30,11 +30,12 @@ config_cb() {
       config_get HOOK_SCRIPT "$cfg" hook_script
       config_get SSL_CERT "$cfg" ssl_cert
       config_get SSL_KEY "$cfg" ssl_key
+      config_get TIMEOUT_LENGTH "$cfg" timeout_length
 
       [ $enabled -eq 0 ] && return
 
       echo "Starting notdhcpserver"
-      service_start $SERVER_PATH $SERVER_ARGS -s $HOOK_SCRIPT -c $SSL_CERT -k $SSL_KEY $IFACES 
+      service_start $SERVER_PATH $SERVER_ARGS -s $HOOK_SCRIPT -c $SSL_CERT -k $SSL_KEY -t $TIMEOUT_LENGTH $IFACES 
 
       ;;
   esac
