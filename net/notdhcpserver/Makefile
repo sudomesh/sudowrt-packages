@@ -38,6 +38,16 @@ define Package/notdhcpserver/install
 	$(INSTALL_DATA) ./files/config.default $(1)/etc/config/notdhcpserver
 endef
 
+define Package/notdhcpserver/postinst
+	#!/bin/sh
+	# check if we are on real system
+	if [ -z "$${IPKG_INSTROOT}" ]; then
+		echo "Enabling rc.d symlink for notdhcpserver"
+		/etc/init.d/notdhcpserver enable
+	fi
+	exit 0
+endef
+
 define Package/notdhcpserver/conffiles
 /etc/config/notdhcpserver
 endef
