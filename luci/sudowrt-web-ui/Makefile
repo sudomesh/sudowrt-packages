@@ -38,7 +38,9 @@ define Package/sudowrt-web-ui/install
 	$(INSTALL_DIR) $(1)/www/css/fonts
 	$(CP) $(PKG_BUILD_DIR)/web-build/css/fonts/* $(1)/www/css/fonts/
 	$(INSTALL_DIR) $(1)/usr/libexec/rpcd
-	$(INSTALL_DATA) ./files/src/usr/libexec/rpcd/password $(1)/usr/libexec/rpcd/pasword
+	$(INSTALL_BIN) ./files/src/usr/libexec/rpcd/password $(1)/usr/libexec/rpcd/password
+	$(INSTALL_DIR) $(1)/usr/share/rpcd/acl.d
+	$(INSTALL_DATA) ./files/src/usr/share/rpcd/acl.d/sudowrt-web-ui.json $(1)/usr/share/rpcd/acl.d/sudowrt-web-ui.json
 endef
 
 define Package/sudowrt-web-ui/postinst

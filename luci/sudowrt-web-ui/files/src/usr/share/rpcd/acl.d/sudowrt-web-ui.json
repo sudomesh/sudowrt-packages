@@ -1,0 +1,25 @@
+{
+        "sudowrt-web-ui": {
+                "description": "Logged in sudowrt-web-ui user.",
+                "read": {
+			"ubus": {
+				"session": [
+	                                 "access",
+	                                 "destroy"
+	                        ],
+				"uci": ["*"]
+			},	
+			"uci": ["tunneldigger", "wireless", "configs"]
+                },
+                "write": {
+			"ubus": {
+				"session": [
+	                                 "access",
+					 "destroy"
+				],
+				"uci": ["*"]
+			},
+			"uci": ["tunneldigger", "wireless", "configs"]
+                }
+        }
+}
