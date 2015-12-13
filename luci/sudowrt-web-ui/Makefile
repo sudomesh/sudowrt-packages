@@ -34,11 +34,11 @@ define Package/sudowrt-web-ui/install
 	$(INSTALL_DIR) $(1)/www/js
 	$(CP) $(PKG_BUILD_DIR)/web-build/js/bundle.min.js $(1)/www/js/bundle.js
 	$(INSTALL_DIR) $(1)/www/css
-	$(CP) $(PKG_BUILD_DIR)/web-build/css/bundle.css.min $(1)/www/css/bundle.css
+	$(CP) $(PKG_BUILD_DIR)/web-build/css/bundle.min.css $(1)/www/css/bundle.css
 	$(INSTALL_DIR) $(1)/www/css/fonts
 	$(CP) $(PKG_BUILD_DIR)/web-build/css/fonts/* $(1)/www/css/fonts/
 	$(INSTALL_DIR) $(1)/usr/libexec/rpcd
-	$(INSTALL_BIN) ./src/usr/libexec/rpcd/password $(1)/usr/libexec/rpcd/pasword
+	$(INSTALL_DATA) ./files/src/usr/libexec/rpcd/password $(1)/usr/libexec/rpcd/pasword
 endef
 
 define Package/sudowrt-web-ui/postinst
