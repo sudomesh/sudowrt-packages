@@ -30,9 +30,15 @@ endef
 
 define Package/sudowrt-home-webclient/install
 	$(INSTALL_DIR) $(1)/www
-	$(CP) $(PKG_BUILD_DIR)/web-build/* $(1)/www/
+	$(CP) $(PKG_BUILD_DIR)/web-build/index.html $(1)/www/index.html
+	$(INSTALL_DIR) $(1)/www/js
+	$(CP) $(PKG_BUILD_DIR)/web-build/js/bundle.min.js $(1)/www/js/bundle.js
+	$(INSTALL_DIR) $(1)/www/css
+	$(CP) $(PKG_BUILD_DIR)/web-build/css/bundle.css.min $(1)/www/css/bundle.css
+	$(INSTALL_DIR) $(1)/www/css/fonts
+	$(CP) $(PKG_BUILD_DIR)/web-build/css/fonts/* $(1)/www/css/fonts/
 	$(INSTALL_DIR) $(1)/usr/libexec/rpcd
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/web-build/src/usr/libexec/rpcd/password $(1)/usr/libexec/rpcd/pasword
+	$(INSTALL_BIN) ./src/usr/libexec/rpcd/password $(1)/usr/libexec/rpcd/pasword
 endef
 
 define Package/sudowrt-home-webclient/postinst
