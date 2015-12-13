@@ -28,7 +28,7 @@ endef
 define Build/Compile
 endef
 
-define Package/sudowrt-home-webclient/install
+define Package/sudowrt-web-ui/install
 	$(INSTALL_DIR) $(1)/www
 	$(CP) $(PKG_BUILD_DIR)/web-build/index.html $(1)/www/index.html
 	$(INSTALL_DIR) $(1)/www/js
@@ -41,7 +41,7 @@ define Package/sudowrt-home-webclient/install
 	$(INSTALL_BIN) ./src/usr/libexec/rpcd/password $(1)/usr/libexec/rpcd/pasword
 endef
 
-define Package/sudowrt-home-webclient/postinst
+define Package/sudowrt-web-ui/postinst
 	#!/bin/sh
 	# check if we are on real system
 	if [ -z "$${IPKG_INSTROOT}" ]; then
