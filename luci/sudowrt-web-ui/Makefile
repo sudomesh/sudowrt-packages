@@ -35,6 +35,8 @@ define Package/sudowrt-web-ui/install
 	$(CP) $(PKG_BUILD_DIR)/web-build/js/bundle.min.js $(1)/www/js/bundle.js
 	$(INSTALL_DIR) $(1)/www/css
 	$(CP) $(PKG_BUILD_DIR)/web-build/css/bundle.min.css $(1)/www/css/bundle.css
+	$(INSTALL_DIR) $(1)/www/images
+	$(CP) $(PKG_BUILD_DIR)/web-build/images/* $(1)/www/images/
 	$(INSTALL_DIR) $(1)/www/css/fonts
 	$(CP) $(PKG_BUILD_DIR)/web-build/css/fonts/* $(1)/www/css/fonts/
 	$(INSTALL_DIR) $(1)/usr/libexec/rpcd
