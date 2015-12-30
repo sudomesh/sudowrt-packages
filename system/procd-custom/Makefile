@@ -7,8 +7,8 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=procd
-PKG_VERSION:=2015-12-11
+PKG_NAME:=procd-custom
+PKG_VERSION:=2015-12-30
 
 PKG_RELEASE=$(PKG_SOURCE_VERSION)
 
