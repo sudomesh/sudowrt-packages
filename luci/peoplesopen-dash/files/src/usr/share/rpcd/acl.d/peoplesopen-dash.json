@@ -1,0 +1,27 @@
+{
+        "peoplesopen-dash": {
+                "description": "Logged in peoplesopen-dash user.",
+                "read": {
+			"ubus": {
+				"session": [
+	                                 "access",
+	                                 "destroy"
+	                        ],
+				"uci": ["*"],
+				"password": ["set"]
+			},	
+			"uci": ["tunneldigger", "wireless", "configs"]
+                },
+                "write": {
+			"ubus": {
+				"session": [
+	                                 "access",
+					 "destroy"
+				],
+				"uci": ["*"],
+				"password": ["set"]
+			},
+			"uci": ["tunneldigger", "wireless", "configs"]
+                }
+        }
+}
