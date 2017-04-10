@@ -30,20 +30,7 @@ endef
 
 define Package/peoplesopen-dash/install
 	$(INSTALL_DIR) $(1)/www
-	$(CP) $(PKG_BUILD_DIR)/build/index.html $(1)/www/index.html
-	$(CP) $(PKG_BUILD_DIR)/build/favicon.ico $(1)/www/favicon.ico
-	$(CP) $(PKG_BUILD_DIR)/build/asset-manifest.json $(1)/www/asset-manifest.json 
-	$(INSTALL_DIR) $(1)/www/static
-	$(INSTALL_DIR) $(1)/www/static/js
-	$(CP) $(PKG_BUILD_DIR)/build/static/js/main.01743b1a.js $(1)/www/static/js/main.01743b1a.js
-	$(CP) $(PKG_BUILD_DIR)/build/static/js/main.01743b1a.js.map $(1)/www/static/js/main.01743b1a.js,map
-	$(INSTALL_DIR) $(1)/www/static/css
-	$(CP) $(PKG_BUILD_DIR)/build/static/css/main.0adcef4e.css $(1)/www/static/css/main.0adcef4e.css
-	$(CP) $(PKG_BUILD_DIR)/build/static/css/main.0adcef4e.css.map $(1)/www/static/css/main.0adcef4e.css.map
-	$(INSTALL_DIR) $(1)/www/static/media
-	$(CP) $(PKG_BUILD_DIR)/build/static/media/* $(1)/www/static/media/
-	$(INSTALL_DIR) $(1)/www/static/css/fonts
-	$(CP) $(PKG_BUILD_DIR)/build/static/css/fonts/* $(1)/www/static/css/fonts/
+	$(CP) $(PKG_BUILD_DIR)/build/* $(1)/www/
 	$(INSTALL_DIR) $(1)/usr/libexec/rpcd
 	$(INSTALL_BIN) ./files/src/usr/libexec/rpcd/password $(1)/usr/libexec/rpcd/password
 	$(INSTALL_DIR) $(1)/usr/share/rpcd/acl.d
