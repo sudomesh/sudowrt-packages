@@ -10,7 +10,7 @@
 				"uci": ["*"],
 				"password": ["set"]
 			},	
-			"uci": ["tunneldigger", "wireless", "configs"]
+			"uci": ["system", "tunneldigger", "wireless", "configs"]
                 },
                 "write": {
 			"ubus": {
@@ -21,7 +21,7 @@
 				"uci": ["*"],
 				"password": ["set"]
 			},
-			"uci": ["tunneldigger", "wireless", "configs"]
+			"uci": ["system", "tunneldigger", "wireless", "configs"]
                 }
         }
 }
